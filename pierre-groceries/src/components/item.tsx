@@ -7,9 +7,9 @@ import {
 } from "@mui/material";
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { ItemChild } from "../services/types";
-import CheckIcon from '@mui/icons-material/Check';
 
-const Item = ({ grocery, index, deleteGrocery, purchase }: ItemChild) => {
+
+const Item = ({ grocery, index, deleteGrocery, purchase, icon }: ItemChild) => {
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
@@ -19,13 +19,13 @@ const Item = ({ grocery, index, deleteGrocery, purchase }: ItemChild) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => deleteGrocery(index)}>
-            <DeleteTwoToneIcon/>
+          <Button size="small" onClick={() => deleteGrocery(grocery)}>
+            <DeleteTwoToneIcon color='error'/>
           </Button>
         </CardActions>
         <CardActions>
           <Button size="small" onClick={() => purchase(grocery)}>
-            <CheckIcon/>
+            {icon}
           </Button>
         </CardActions>
       </Card>

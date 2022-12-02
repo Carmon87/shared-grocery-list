@@ -3,18 +3,26 @@ import InputGrocery from "./inputGrocery";
 import Item from "./item";
 import { DeleteGrocery } from "../services/types";
 import Grid from "@mui/material/Unstable_Grid2";
+import CheckIcon from '@mui/icons-material/Check';
+import ReplayTwoToneIcon from '@mui/icons-material/ReplayTwoTone';
 
 const ItemList = () => {
   const [pendingItemList, setPendingItemList] = useState<string[]>([]);
   const [purchasedItemList, setPurchasedItemList] = useState<string[]>([]);
 
-  const deleteGrocery: DeleteGrocery = (index) => {
+  const deleteGrocery: DeleteGrocery = (grocery) => {
+    if (pendingItemList.find((item) => item === grocery)){
     const groceryListCopy = [...pendingItemList];
-    groceryListCopy.splice(index, 1);
+    groceryListCopy.splice(groceryListCopy.indexOf(grocery), 1);
     setPendingItemList(groceryListCopy);
+    } else {
+    const checkedListCopy = [...purchasedItemList];
+    checkedListCopy.splice(checkedListCopy.indexOf(grocery), 1);
+    setPurchasedItemList(checkedListCopy);
+    }
   };
 
-  const purchaseFunction: (grocery: string) => void = (grocery) => {
+  const purchaseFunction: DeleteGrocery = (grocery) => {
     if (pendingItemList.find((item) => item === grocery)) {
       console.log('grocery in If condition: ',grocery, 'index: ', pendingItemList.indexOf(grocery)) 
       const checkedItem = pendingItemList.splice(
@@ -41,6 +49,7 @@ const ItemList = () => {
           index={index}
           deleteGrocery={deleteGrocery}
           purchase={purchaseFunction}
+          icon={<CheckIcon color='success'/>}
         />
       </Grid>
     );
@@ -54,6 +63,7 @@ const ItemList = () => {
           index={index}
           deleteGrocery={deleteGrocery}
           purchase={purchaseFunction}
+          icon={<ReplayTwoToneIcon color='disabled'/>}
         />
       </Grid>
     );

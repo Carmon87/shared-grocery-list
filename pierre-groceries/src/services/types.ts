@@ -4,11 +4,12 @@ export interface InputGroceryChild {
   }
 
  
-export type DeleteGrocery = (index: number) =>void;
+export type DeleteGrocery = (grocery: string) =>void;
 export interface ItemChild {
     grocery:string;
     key?:number;
     index:number;
     deleteGrocery:DeleteGrocery;
-    purchase: (grocery: string)=>void;
+    purchase: DeleteGrocery;
+    icon: React.ReactNode
 };
