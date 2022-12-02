@@ -9,6 +9,6 @@ export interface ItemChild {
     grocery:string;
     key?:number;
     index:number;
-    deleteGrocery:DeleteGrocery; 
-
-}
+    deleteGrocery:DeleteGrocery;
+    purchase: (grocery: string)=>void;
+};
