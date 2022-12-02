@@ -7,7 +7,7 @@ export interface InputGroceryChild {
 export type DeleteGrocery = (index: number) =>void;
 export interface ItemChild {
     grocery:string;
-    key: number;
+    key?:number;
     index:number;
     deleteGrocery:DeleteGrocery; 
 

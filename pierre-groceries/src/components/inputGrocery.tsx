@@ -9,13 +9,18 @@ const InputGrocery = ({ setItemList, pendingItemList }: InputGroceryChild) => {
   const [toggleButton, setToggleButton] = React.useState(true);
 
   React.useEffect(() => {
-    groceryItem.length ? setToggleButton(false) : setToggleButton(true)
+    groceryItem.length ? setToggleButton(false) : setToggleButton(true);
   }, [groceryItem]);
 
   return (
     <div>
       <Box
         component="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          setItemList([...pendingItemList, groceryItem]);
+          setGroceryItem("");
+        }}
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
         }}
@@ -33,15 +38,7 @@ const InputGrocery = ({ setItemList, pendingItemList }: InputGroceryChild) => {
           }}
         />
 
-        <Button
-          variant="outlined"
-          disabled={toggleButton}
-          onClick={(event: React.SyntheticEvent) => {
-            event.preventDefault();
-            setItemList([...pendingItemList, groceryItem]);
-            setGroceryItem("");
-          }}
-        >
+        <Button variant="outlined" disabled={toggleButton} type="submit">
           Add to list
         </Button>
       </Box>

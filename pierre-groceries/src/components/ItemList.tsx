@@ -1,8 +1,8 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import InputGrocery from "./inputGrocery";
 import Item from "./item";
 import { DeleteGrocery } from "../services/types";
+import Grid from "@mui/material/Unstable_Grid2";
 
 const ItemList = () => {
   const [pendingItemList, setPendingItemList] = useState<string[]>([]);
@@ -13,9 +13,17 @@ const ItemList = () => {
     setPendingItemList(groceryListCopy);
   };
 
-  const addedGroceryList = pendingItemList.map((grocery, index) => (
-    <Item grocery={grocery} key={index} index={index} deleteGrocery={deleteGrocery} />
-  ));
+  const addedGroceryList = pendingItemList.map((grocery, index) => {
+    return (
+      <Grid container spacing={2} key={index}>
+        <Item
+          grocery={grocery}
+          index={index}
+          deleteGrocery={deleteGrocery}
+        />
+      </Grid>
+    );
+  });
 
   return (
     <div>

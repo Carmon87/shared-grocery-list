@@ -5,10 +5,11 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import React from "react";
 import { ItemChild } from "../services/types";
 
-const Item = ({ grocery, key, index, deleteGrocery }: ItemChild) => {
+const Item = ({ grocery, index, deleteGrocery }: ItemChild) => {
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
@@ -19,7 +20,7 @@ const Item = ({ grocery, key, index, deleteGrocery }: ItemChild) => {
         </CardContent>
         <CardActions>
           <Button size="small" onClick={() => deleteGrocery(index)}>
-            Delete item
+            <DeleteTwoToneIcon/>
           </Button>
         </CardActions>
       </Card>
